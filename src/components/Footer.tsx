@@ -1,49 +1,59 @@
 import Link from "next/link";
-import styles from "./Footer.module.css";
+
+import { WAITLIST_URL } from "@/lib/links";
+
+const NAV = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/sponsor", label: "Sponsors" },
+];
 
 export default function Footer() {
   return (
-    <footer className={`${styles.footer} no-print`}>
-      <div className={styles.container}>
-        <div className={styles.top}>
-          <div className={styles.brand}>
-            <Link href="/" className={styles.logo}>
-              <span className={styles.logoBracket}>|</span>
-              <span className={styles.logoText}>MQH</span>
-              <span className={styles.logoBracket}>⟩</span>
-            </Link>
-            <p className={styles.brandText}>
-              Founded by student orgs from Purdue University, UIUC, University of Chicago, 
-              UW-Madison, Purdue NW, and UIC. Connecting student builders across the Midwest.
-            </p>
-          </div>
-
-          <div className={styles.linkColumn}>
-            <h4 className={styles.columnTitle}>Navigation</h4>
-            <Link href="/" className={styles.link}>Home</Link>
-            <Link href="/about" className={styles.link}>About MQH</Link>
-            <Link href="/sponsor" className={styles.link}>Sponsorship Interest</Link>
-            <Link href="/register" className={styles.link}>Pre-Register Waitlist</Link>
-          </div>
-
-          <div className={styles.linkColumn}>
-            <h4 className={styles.columnTitle}>Participating Student Orgs</h4>
-            <span className={styles.partnerText}>Purdue Quantum Student Org (QSO)</span>
-            <span className={styles.partnerText}>UIUC Student Quantum Chapter</span>
-            <span className={styles.partnerText}>UChicago Student Quantum Group</span>
-            <span className={styles.partnerText}>UW-Madison Quantum Club</span>
-            <span className={styles.partnerText}>Purdue NW & UIC Student Chapters</span>
-          </div>
+    <footer className="border-t border-border/60">
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-6 py-10 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <Link
+            href="/"
+            className="flex items-baseline gap-0.5 font-heading text-base font-bold tracking-tight"
+          >
+            <span className="text-primary">|</span>
+            <span>MQH</span>
+            <span className="text-primary">⟩</span>
+          </Link>
+          <p className="mt-2 max-w-sm text-sm text-muted-foreground">
+            Midwest Quantum Hackathon — a student-led initiative. November
+            14–15, 2026, Chicago.
+          </p>
         </div>
 
-        <div className={styles.bottom}>
-          <p className={styles.copy}>
-            &copy; 2026 Midwest Quantum Hackathon. Organized by student organizations.
+        <nav className="flex flex-wrap gap-x-6 gap-y-2">
+          {NAV.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+            >
+              {link.label}
+            </Link>
+          ))}
+          <a
+            href={WAITLIST_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+          >
+            Pre-Register
+          </a>
+        </nav>
+      </div>
+
+      <div className="border-t border-border/60">
+        <div className="mx-auto w-full max-w-6xl px-6 py-4">
+          <p className="text-xs text-muted-foreground">
+            &copy; 2026 Midwest Quantum Hackathon. Organized by student
+            organizations.
           </p>
-          <div className={styles.status}>
-            <span className={styles.statusDot}></span>
-            Student-Led Initiative | Autumn 2026
-          </div>
         </div>
       </div>
     </footer>

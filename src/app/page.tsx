@@ -1,85 +1,92 @@
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+
+import { WAITLIST_URL } from "@/lib/links";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import MidwestMap from "@/components/MidwestMap";
+import Chapters from "@/components/Chapters";
 import Footer from "@/components/Footer";
-import styles from "./Home.module.css";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+
+const GATEWAYS = [
+  {
+    num: "01",
+    title: "About the Hackathon",
+    text: "Organized by student orgs from UIUC, UChicago, Purdue, UW-Madison, and UIC to build a regional student quantum network.",
+    href: "/about",
+    cta: "Read our vision",
+    external: false,
+  },
+  {
+    num: "02",
+    title: "Sponsorship",
+    text: "Options for corporate partners interested in supporting student hackers, workshops, and recruitment.",
+    href: "/sponsor",
+    cta: "Explore partnerships",
+    external: false,
+  },
+  {
+    num: "03",
+    title: "Pre-Registration",
+    text: "Are you a Midwest student? Submit your interest to receive logistics updates and priority signup access.",
+    href: WAITLIST_URL,
+    cta: "Join the waitlist",
+    external: true,
+  },
+];
 
 export default function Home() {
-  const partners = [
-    { name: "Purdue University", dept: "Quantum Student Org (QSO)" },
-    { name: "UIUC", dept: "Illinois Student Quantum Club" },
-    { name: "University of Chicago", dept: "Chicago Student Quantum Group" },
-    { name: "UIC", dept: "UIC Quantum Chapter" },
-    { name: "Purdue Northwest", dept: "PNW Quantum Group" },
-    { name: "UW-Madison", dept: "Wisconsin Quantum Student Club" },
-  ];
-
   return (
     <>
       <Header />
-      <main className={styles.main}>
-        {/* Main Hero Banner */}
+      <main>
         <Hero />
+        <Chapters />
 
-        {/* Scroll-Driven Midwest Map Convergence to Chicago */}
-        <MidwestMap />
-
-        {/* Cooperating Universities Bar */}
-        <section className={styles.partnersSection}>
-          <div className={styles.container}>
-            <p className={styles.partnersTitle}>Participating Midwest Student Organizations</p>
-            <div className={styles.partnersGrid}>
-              {partners.map((partner, idx) => (
-                <div key={idx} className={styles.partnerBadge}>
-                  <span className={styles.partnerName}>{partner.name}</span>
-                  <span className={styles.partnerDept}>{partner.dept}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Gateway Cards */}
-        <section className={styles.gateways}>
-          <div className={styles.container}>
-            <div className={styles.gatewayGrid}>
-              <div className={styles.gatewayCol}>
-                <span className={styles.colNum}>[ 01 ]</span>
-                <h3 className={styles.cardTitle}>About the Hackathon</h3>
-                <p className={styles.cardText}>
-                  Organized by student orgs from UIUC, UChicago, Purdue University, UW-Madison, Purdue NW, and UIC 
-                  to build a regional student quantum network.
-                </p>
-                <Link href="/about" className={styles.cardLink}>
-                  Read student vision →
-                </Link>
-              </div>
-
-              <div className={styles.gatewayCol}>
-                <span className={styles.colNum}>[ 02 ]</span>
-                <h3 className={styles.cardTitle}>Sponsorship Interest</h3>
-                <p className={styles.cardText}>
-                  Explore options for corporate partners and companies interested in supporting student hackers, 
-                  workshops, and recruitment.
-                </p>
-                <Link href="/sponsor" className={styles.cardLink}>
-                  Sponsorship interest →
-                </Link>
-              </div>
-
-              <div className={styles.gatewayCol}>
-                <span className={styles.colNum}>[ 03 ]</span>
-                <h3 className={styles.cardTitle}>Pre-Registration</h3>
-                <p className={styles.cardText}>
-                  Are you a student in the Midwest? Submit your name to demonstrate early interest and receive 
-                  logistics updates for general signups.
-                </p>
-                <Link href="/register" className={styles.cardLink}>
-                  Open waitlist form →
-                </Link>
-              </div>
-            </div>
+        <section>
+          <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-6 px-6 py-20 md:grid-cols-3 md:py-24">
+            {GATEWAYS.map((gateway) => (
+              <Card key={gateway.num} className="justify-between">
+                <CardHeader>
+                  <span className="font-heading text-sm font-semibold text-primary">
+                    {gateway.num}
+                  </span>
+                  <CardTitle className="mt-2 text-xl">
+                    {gateway.title}
+                  </CardTitle>
+                  <CardDescription className="mt-2 leading-relaxed">
+                    {gateway.text}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  {gateway.external ? (
+                    <a
+                      href={gateway.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-sm font-medium text-primary transition-colors hover:text-primary/80"
+                    >
+                      {gateway.cta}
+                      <ArrowRight className="size-4" />
+                    </a>
+                  ) : (
+                    <Link
+                      href={gateway.href}
+                      className="inline-flex items-center gap-1.5 text-sm font-medium text-primary transition-colors hover:text-primary/80"
+                    >
+                      {gateway.cta}
+                      <ArrowRight className="size-4" />
+                    </Link>
+                  )}
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </section>
       </main>

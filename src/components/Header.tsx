@@ -1,81 +1,104 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import styles from "./Header.module.css";
+import { Menu, X } from "lucide-react";
+
+import { cn } from "@/lib/utils";
+import { WAITLIST_URL } from "@/lib/links";
+import { Button } from "@/components/ui/button";
+
+const NAV_LINKS = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/sponsor", label: "Sponsors" },
+];
+
+function Logo() {
+  return (
+    <Link
+      href="/"
+      className="flex items-baseline gap-0.5 font-heading text-lg font-bold tracking-tight"
+    >
+      <span className="text-primary">|</span>
+      <span>MQH</span>
+      <span className="text-primary">⟩</span>
+    </Link>
+  );
+}
 
 export default function Header() {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const isActive = (path: string) => {
-    return pathname === path ? styles.activeLink : "";
-  };
-
   return (
-    <header className={`${styles.header} ${scrolled ? styles.scrolled : ""} no-print`}>
-      <div className={styles.container}>
-        {/* Bra-Ket Logo |MQH⟩ */}
-        <Link href="/" className={styles.logo}>
-          <span className={styles.logoBracket}>|</span>
-          <span className={styles.logoText}>MQH</span>
-          <span className={styles.logoBracket}>⟩</span>
-          <span className={styles.logoTag}>Midwest</span>
-        </Link>
+    <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/80 backdrop-blur-md">
+      <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-6">
+        <Logo />
 
-        {/* Desktop Nav */}
-        <nav className={styles.desktopNav}>
-          <Link href="/" className={`${styles.navLink} ${isActive("/")}`}>Home</Link>
-          <Link href="/about" className={`${styles.navLink} ${isActive("/about")}`}>About</Link>
-          <Link href="/sponsor" className={`${styles.navLink} ${isActive("/sponsor")}`}>Sponsors</Link>
+        <nav className="hidden items-center gap-8 md:flex">
+          {NAV_LINKS.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={cn(
+                "text-sm text-muted-foreground transition-colors hover:text-foreground",
+                pathname === link.href && "text-foreground"
+              )}
+            >
+              {link.label}
+            </Link>
+          ))}
         </nav>
 
-        <div className={styles.actions}>
-          <Link href="/register" className="btn btn-primary">
-            Pre-Register
-          </Link>
+        <div className="hidden md:block">
+          <Button asChild size="sm">
+            <a href={WAITLIST_URL} target="_blank" rel="noopener noreferrer">
+              Pre-Register
+            </a>
+          </Button>
         </div>
 
-        {/* Mobile menu toggle */}
         <button
-          className={`${styles.mobileToggle} ${mobileMenuOpen ? styles.active : ""}`}
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          type="button"
+          className="inline-flex size-9 items-center justify-center rounded-md text-foreground md:hidden"
+          onClick={() => setOpen((v) => !v)}
           aria-label="Toggle menu"
         >
-          <span></span>
-          <span></span>
-          <span></span>
+          {open ? <X className="size-5" /> : <Menu className="size-5" />}
         </button>
       </div>
 
-      {/* Mobile Menu */}
-      <div className={`${styles.mobileMenu} ${mobileMenuOpen ? styles.mobileMenuOpen : ""}`}>
-        <nav className={styles.mobileNav}>
-          <Link href="/" className={isActive("/")} onClick={() => setMobileMenuOpen(false)}>Home</Link>
-          <Link href="/about" className={isActive("/about")} onClick={() => setMobileMenuOpen(false)}>About</Link>
-          <Link href="/sponsor" className={isActive("/sponsor")} onClick={() => setMobileMenuOpen(false)}>Sponsors</Link>
-          <div className={styles.mobileActions}>
-            <Link href="/register" className="btn btn-primary" onClick={() => setMobileMenuOpen(false)}>
-              Pre-Register
-            </Link>
-          </div>
-        </nav>
-      </div>
+      {open && (
+        <div className="border-t border-border/60 bg-background md:hidden">
+          <nav className="mx-auto flex w-full max-w-6xl flex-col gap-1 px-6 py-4">
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className={cn(
+                  "rounded-md px-2 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground",
+                  pathname === link.href && "text-foreground"
+                )}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <Button asChild size="sm" className="mt-2">
+              <a
+                href={WAITLIST_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setOpen(false)}
+              >
+                Pre-Register
+              </a>
+            </Button>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }

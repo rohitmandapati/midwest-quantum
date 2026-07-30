@@ -1,154 +1,137 @@
+import { Check } from "lucide-react";
+
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import styles from "./Sponsor.module.css";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
-interface Package {
-  name: string;
-  price: string;
-  badge: string;
-  badgeClass: string;
-  description: string;
-  perks: string[];
-}
+const PACKAGE = {
+  name: "Sponsor the Hackathon",
+  description:
+    "One simple package — no tiers, no minimum. We welcome sponsors of every size, and every contribution goes straight to the students.",
+  perks: [
+    "Your logo on the event t-shirt",
+    "Your logo displayed at the event and on our website",
+    "A table at the event to meet and talk with students",
+    "Access to a resume book of top Midwest quantum talent",
+  ],
+};
+
+const BUDGET = [
+  {
+    allocation: "Catering & Meals",
+    percentage: "55%",
+    impact:
+      "Keeping hackers fueled with breakfasts, lunches, dinners, coffee, and snacks.",
+  },
+  {
+    allocation: "Student Prize Pools",
+    percentage: "25%",
+    impact: "Rewards and grants for top projects in each challenge track.",
+  },
+  {
+    allocation: "Operations & Materials",
+    percentage: "20%",
+    impact: "Workspace materials, name badges, student t-shirts, and printing.",
+  },
+];
 
 export default function SponsorPage() {
-  const packages: Package[] = [
-    {
-      name: "Coherence",
-      price: "$1,500",
-      badge: "Associate",
-      badgeClass: "badge-cyan",
-      description: "Establish your brand presence and gain access to the collective talent pool.",
-      perks: [
-        "Digital resume database access",
-        "Company logo featured on website & slide decks",
-        "Distribution of corporate flyers/stickers",
-        "Slack community channel branding",
-      ],
-    },
-    {
-      name: "Superposition",
-      price: "$3,000",
-      badge: "Silver Partner",
-      badgeClass: "badge-purple",
-      description: "Engage deeply with participants, lead technical workshops, and judge challenges.",
-      perks: [
-        "All Coherence perks included",
-        "Shared physical recruiting table at venue",
-        "15-minute technical talk/demo slot",
-        "Corporate representative judging seats",
-        "Co-branded challenge track prompt",
-      ],
-    },
-    {
-      name: "Entanglement",
-      price: "$5,000",
-      badge: "Gold Partner",
-      badgeClass: "badge-blue",
-      description: "Command the main stage, design signature challenges, and host exclusive interviews.",
-      perks: [
-        "All Superposition perks included",
-        "Dedicated physical recruiting table",
-        "10-minute keynote presentation slot",
-        "Custom signature award category",
-        "Early/pre-event resume book access",
-        "Post-event recruitment follow-up database",
-      ],
-    },
-  ];
-
   return (
     <>
       <Header />
-      <main className={styles.main}>
-        {/* Intro */}
-        <section className={styles.intro}>
-          <div className={styles.container}>
-            <span className="badge badge-purple">Sponsors & Partners</span>
-            <h1 className={styles.pageTitle}>Support Regional Quantum Innovation</h1>
-            <p className={styles.pageSubtitle}>
-              Partner with the Midwest Quantum Alliance to recruit top-tier CS and Physics students, 
-              sponsor targeted research challenges, and build a lasting regional quantum pipeline.
+      <main>
+        <section className="border-b border-border/60">
+          <div className="mx-auto w-full max-w-6xl px-6 py-20 md:py-24">
+            <Badge variant="accent" className="mb-6">
+              Sponsors & partners
+            </Badge>
+            <h1 className="max-w-3xl font-heading text-4xl font-bold tracking-tight md:text-5xl">
+              Support regional quantum innovation
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+              Partner with MQH to reach top CS and physics students and help
+              build a lasting regional quantum pipeline. We keep sponsorship
+              simple and accessible — no one gets priced out.
             </p>
           </div>
         </section>
 
-        {/* Tiers Grid */}
-        <section className={styles.packages}>
-          <div className={styles.container}>
-            <div className={styles.grid}>
-              {packages.map((pkg, idx) => (
-                <div key={idx} className={styles.card}>
-                  <div className={styles.cardHeader}>
-                    <span className={`badge ${pkg.badgeClass}`}>{pkg.badge}</span>
-                    <h3 className={styles.pkgName}>{pkg.name}</h3>
-                    <div className={styles.pkgPrice}>{pkg.price}</div>
-                  </div>
-                  <p className={styles.pkgDesc}>{pkg.description}</p>
-                  
-                  <div className={styles.divider}></div>
-                  
-                  <h4 className={styles.perkTitle}>Included Benefits</h4>
-                  <ul className={styles.perkList}>
-                    {pkg.perks.map((perk, pIdx) => (
-                      <li key={pIdx} className={styles.perkItem}>
-                        <span className={styles.bullet}>▪</span> {perk}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
+        <section className="border-b border-border/60">
+          <div className="mx-auto w-full max-w-2xl px-6 py-20 md:py-24">
+            <Card className="border-primary ring-1 ring-primary">
+              <CardHeader>
+                <CardTitle className="text-2xl">{PACKAGE.name}</CardTitle>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  {PACKAGE.description}
+                </p>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <ul className="space-y-3">
+                  {PACKAGE.perks.map((perk) => (
+                    <li
+                      key={perk}
+                      className="flex items-start gap-3 text-sm text-foreground"
+                    >
+                      <Check className="mt-0.5 size-4 shrink-0 text-primary" />
+                      <span>{perk}</span>
+                    </li>
+                  ))}
+                </ul>
+                <Button asChild size="lg" className="w-full">
+                  <a href="mailto:sponsors@mqh.org">Get in touch to sponsor</a>
+                </Button>
+              </CardContent>
+            </Card>
           </div>
         </section>
 
-        {/* Budget Allocation Info */}
-        <section className={styles.budget}>
-          <div className={styles.container}>
-            <div className={styles.budgetWrapper}>
-              <h2 className={styles.sectionTitle}>Where Funding Goes</h2>
-              <p className={styles.sectionDesc}>
-                Sponsoring funds are directly utilized to remove participation barriers for students across the Midwest.
+        <section>
+          <div className="mx-auto w-full max-w-6xl px-6 py-20 md:py-24">
+            <div className="max-w-2xl">
+              <h2 className="font-heading text-3xl font-bold tracking-tight">
+                Where funding goes
+              </h2>
+              <p className="mt-4 text-muted-foreground">
+                Sponsorship funds are used directly to remove participation
+                barriers for students across the Midwest.
               </p>
-              
-              <table className={styles.table}>
-                <thead>
-                  <tr>
-                    <th>Allocation</th>
-                    <th>Percentage</th>
-                    <th>Impact Details</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><strong>Student Travel & Transit</strong></td>
-                    <td>25%</td>
-                    <td>Fuel and rental stipends for shuttle vans linking regional student chapters to Chicago.</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Catering & Meals</strong></td>
-                    <td>45%</td>
-                    <td>Keeping hackers fueled with breakfasts, lunches, dinners, coffee, and snacks.</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Student Prize Pools</strong></td>
-                    <td>20%</td>
-                    <td>Rewards and grants for top projects in each challenge track.</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Operations & Materials</strong></td>
-                    <td>10%</td>
-                    <td>Workspace materials, name badges, student t-shirts, and printing costs.</td>
-                  </tr>
-                </tbody>
-              </table>
-              
-              <div className={styles.contactBlock}>
-                <p>Ready to collaborate or need a custom package?</p>
-                <a href="mailto:sponsors@mqh.org" className="btn btn-primary">
-                  Email Sponsoring Board
-                </a>
-              </div>
+            </div>
+
+            <div className="mt-10 overflow-hidden rounded-xl border border-border">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Allocation</TableHead>
+                    <TableHead className="w-24">Percentage</TableHead>
+                    <TableHead>Impact</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {BUDGET.map((row) => (
+                    <TableRow key={row.allocation}>
+                      <TableCell className="font-medium text-foreground">
+                        {row.allocation}
+                      </TableCell>
+                      <TableCell className="text-primary">
+                        {row.percentage}
+                      </TableCell>
+                      <TableCell className="text-muted-foreground">
+                        {row.impact}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
             </div>
           </div>
         </section>
