@@ -14,10 +14,11 @@ export const CHAPTERS: Chapter[] = [
     org: "SIGQuantum @ UIUC",
     logo: "/logo.png",
     monogram: "UIUC",
+    website: "https://sigquantum.com",
   },
   {
     university: "Purdue University",
-    org: "Quantum Student Organization (QSO)",
+    org: "Quantum Student Organization (QSO) of Purdue",
     logo: "/images/qso_logo.png",
     monogram: "QSO",
     website: "https://qsopurdue.org",

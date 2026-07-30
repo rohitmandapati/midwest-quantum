@@ -16,6 +16,11 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-vivid: var(--vivid);
+  --color-vivid-foreground: var(--vivid-foreground);
+
+  /* Smooth scroll */
+  --scroll-behavior: smooth;
   --color-destructive: var(--destructive);
   --color-border: var(--border);
   --color-input: var(--input);
@@ -31,36 +36,38 @@
 }
 
 :root {
-  --radius: 0.625rem;
+  --radius: 0.5rem;
 
-  /* Minimalist light palette: warm neutral paper with a quiet slate accent */
-  --background: oklch(0.995 0 0);
-  --foreground: oklch(0.205 0 0);
+  --background: oklch(0.99 0 0);
+  --foreground: oklch(0.16 0 0);
 
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.205 0 0);
+  --card-foreground: oklch(0.16 0 0);
 
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.16 0 0);
 
-  /* Deep slate — the single highlight color */
-  --primary: #1b2834;
-  --primary-foreground: oklch(0.985 0 0);
+  --primary: #1a2530;
+  --primary-foreground: oklch(0.98 0 0);
 
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.245 0 0);
+  --secondary: oklch(0.965 0 0);
+  --secondary-foreground: oklch(0.22 0 0);
 
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
+  --muted: oklch(0.965 0 0);
+  --muted-foreground: oklch(0.52 0 0);
 
-  --accent: #eaeef1;
-  --accent-foreground: #1b2834;
+  --accent: #e8edf1;
+  --accent-foreground: #1a2530;
+
+  /* Vivid electric blue — used for accent highlights and animation touches */
+  --vivid: oklch(0.58 0.24 258);
+  --vivid-foreground: oklch(0.98 0 0);
 
   --destructive: oklch(0.577 0.245 27.325);
 
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: #1b2834;
+  --border: oklch(0.90 0 0);
+  --input: oklch(0.90 0 0);
+  --ring: #1a2530;
 }
 
 @layer base {
@@ -71,14 +78,84 @@
   body {
     @apply bg-background text-foreground font-sans antialiased;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  h1, h2, h3, h4, h5, h6 {
     @apply font-heading tracking-tight;
   }
 }
+
+/* ─── Scroll reveal ───────────────────────────────────────────── */
+
+@layer utilities {
+  /* Base hidden state; JS adds .is-visible to trigger the transition */
+  [data-reveal] {
+    opacity: 0;
+    translate: 0 18px;
+    transition:
+      opacity 0.55s ease,
+      translate 0.55s ease;
+  }
+
+  [data-reveal].is-visible {
+    opacity: 1;
+    translate: 0 0;
+  }
+
+  /* Stagger delays for sibling items */
+  [data-reveal-delay="1"] { transition-delay: 80ms; }
+  [data-reveal-delay="2"] { transition-delay: 160ms; }
+  [data-reveal-delay="3"] { transition-delay: 240ms; }
+  [data-reveal-delay="4"] { transition-delay: 320ms; }
+  [data-reveal-delay="5"] { transition-delay: 400ms; }
+  [data-reveal-delay="6"] { transition-delay: 480ms; }
+}
+
+/* ─── Hero load-in animation (above fold, no IntersectionObserver needed) ── */
+
+@keyframes hero-in {
+  from { opacity: 0; translate: 0 14px; }
+  to   { opacity: 1; translate: 0 0; }
+}
+
+.hero-animate > * {
+  animation: hero-in 0.6s ease both;
+}
+.hero-animate > *:nth-child(1) { animation-delay: 0ms; }
+.hero-animate > *:nth-child(2) { animation-delay: 80ms; }
+.hero-animate > *:nth-child(3) { animation-delay: 160ms; }
+.hero-animate > *:nth-child(4) { animation-delay: 240ms; }
+.hero-animate > *:nth-child(5) { animation-delay: 360ms; }
+
+/* ─── Vivid pulse on stat numbers ────────────────────────────── */
+
+@keyframes vivid-pop {
+  0%   { color: var(--foreground); }
+  40%  { color: var(--vivid); }
+  100% { color: var(--foreground); }
+}
+
+/* ─── Card hover lift ─────────────────────────────────────────── */
+
+@layer utilities {
+  .card-lift {
+    transition: box-shadow 0.2s ease, translate 0.2s ease;
+  }
+  .card-lift:hover {
+    translate: 0 -2px;
+    box-shadow: 0 8px 24px -4px oklch(0 0 0 / 0.08);
+  }
+}
+
+/* ─── Cute Mascot Float ───────────────────────────────────────── */
+
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-7px) rotate(3deg); }
+}
+
+.animate-float {
+  animation: float-gentle 3.5s ease-in-out infinite;
+}
+
