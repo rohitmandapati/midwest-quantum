@@ -18,7 +18,7 @@ const GATEWAYS = [
   {
     num: "01",
     title: "About the Hackathon",
-    text: "Organized by student orgs from UIUC, UChicago, Purdue, UW-Madison, and UIC to build a regional student quantum network.",
+    text: "Co-founded by student organizations across UIUC, UChicago, Purdue, UW-Madison, and UIC to establish a united regional quantum community.",
     href: "/about",
     cta: "Read our vision",
     external: false,
@@ -26,7 +26,7 @@ const GATEWAYS = [
   {
     num: "02",
     title: "Sponsorship",
-    text: "Options for corporate partners interested in supporting student hackers, workshops, and recruitment.",
+    text: "Custom opportunities for industry partners to mentor hackers, sponsor challenge tracks, and recruit top talent.",
     href: "/sponsor",
     cta: "Explore partnerships",
     external: false,
@@ -34,7 +34,7 @@ const GATEWAYS = [
   {
     num: "03",
     title: "Pre-Registration",
-    text: "Are you a Midwest student? Submit your interest to receive logistics updates and priority signup access.",
+    text: "Midwest undergraduate and graduate students can submit interest to receive priority registration and event updates.",
     href: WAITLIST_URL,
     cta: "Join the waitlist",
     external: true,

@@ -17,12 +17,13 @@ import {
 const PACKAGE = {
   name: "Sponsor the Hackathon",
   description:
-    "One simple package — no tiers, no minimum. We welcome sponsors of every size, and every contribution goes straight to the students.",
+    "Direct sponsorship model with custom track options available. We welcome partners of all sizes, with 100% of funding dedicated directly to student operations, venue hosting, and prize pools.",
   perks: [
-    "Your logo on the event t-shirt",
-    "Your logo displayed at the event and on our website",
-    "A table at the event to meet and talk with students",
-    "Access to a resume book of top Midwest quantum talent",
+    "Your logo featured on event t-shirts, signage, and online platforms",
+    "Dedicated sponsor table to engage directly with participating students",
+    "Full access to the official resume book of top Midwest quantum talent",
+    "Opportunity to present custom challenge tracks or provide hardware access",
+    "Opening/closing ceremony remarks and judge panel representation",
   ],
 };
 
@@ -31,17 +32,17 @@ const BUDGET = [
     allocation: "Catering & Meals",
     percentage: "55%",
     impact:
-      "Keeping hackers fueled with breakfasts, lunches, dinners, coffee, and snacks.",
+      "Fueling student hackers with breakfasts, lunches, dinners, coffee, and refreshments throughout the event.",
   },
   {
     allocation: "Student Prize Pools",
     percentage: "25%",
-    impact: "Rewards and grants for top projects in each challenge track.",
+    impact: "Rewards and project grants for top teams in each challenge track.",
   },
   {
     allocation: "Operations & Materials",
     percentage: "20%",
-    impact: "Workspace materials, name badges, student t-shirts, and printing.",
+    impact: "Workspace materials, badge printing, student t-shirts, and venue logistics.",
   },
 ];
 
@@ -59,9 +60,9 @@ export default function SponsorPage() {
               Support regional quantum innovation
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-              Partner with MQH to reach top CS and physics students and help
-              build a lasting regional quantum pipeline. We keep sponsorship
-              simple and accessible — no one gets priced out.
+              Partner with MQH to reach top CS, physics, and engineering students
+              and help build a lasting regional quantum talent pipeline. We keep
+              sponsorship simple, transparent, and high-impact.
             </p>
           </div>
         </section>

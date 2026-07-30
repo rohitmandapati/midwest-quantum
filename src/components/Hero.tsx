@@ -7,7 +7,12 @@ import { Button } from "@/components/ui/button";
 
 export default function Hero() {
   return (
-    <section className="border-b border-border/60">
+    <section className="relative overflow-hidden border-b border-border/60">
+      {/* Subtle quantum background accent */}
+      <div
+        className="pointer-events-none absolute -top-24 right-0 -z-10 size-[500px] rounded-full bg-primary/5 blur-3xl"
+        aria-hidden="true"
+      />
       <div className="mx-auto w-full max-w-6xl px-6 py-24 md:py-32">
         <div className="max-w-3xl">
           <Badge variant="accent" className="mb-6">
@@ -21,8 +26,8 @@ export default function Hero() {
           </h1>
 
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            A student-led hackathon founded by quantum computing chapters at
-            Purdue, UIUC, University of Chicago, UW-Madison, and UIC. Hosted in
+            A premier student-led quantum computing hackathon co-founded by student
+            chapters at UIUC, UChicago, Purdue, UW-Madison, and UIC. Hosted in
             Chicago, November 14–15, 2026.
           </p>
 
@@ -30,7 +35,7 @@ export default function Hero() {
             <Button asChild size="lg">
               <a href={WAITLIST_URL} target="_blank" rel="noopener noreferrer">
                 Join the waitlist
-                <ArrowRight />
+                <ArrowRight className="size-4" />
               </a>
             </Button>
             <Button asChild size="lg" variant="outline">
@@ -38,23 +43,23 @@ export default function Hero() {
             </Button>
           </div>
 
-          <dl className="mt-14 flex gap-12">
-            <div>
-              <dt className="text-3xl font-semibold text-foreground">5</dt>
-              <dd className="mt-1 text-sm text-muted-foreground">
-                Student chapters
+          <dl className="mt-14 grid grid-cols-3 gap-6 max-w-lg">
+            <div className="rounded-lg border border-border/60 bg-card/60 p-4 backdrop-blur-xs">
+              <dt className="font-heading text-3xl font-bold text-foreground">5</dt>
+              <dd className="mt-1 text-xs font-medium text-muted-foreground">
+                University Chapters
               </dd>
             </div>
-            <div>
-              <dt className="text-3xl font-semibold text-foreground">100%</dt>
-              <dd className="mt-1 text-sm text-muted-foreground">
-                Student-led
+            <div className="rounded-lg border border-border/60 bg-card/60 p-4 backdrop-blur-xs">
+              <dt className="font-heading text-3xl font-bold text-foreground">100%</dt>
+              <dd className="mt-1 text-xs font-medium text-muted-foreground">
+                Student-Organized
               </dd>
             </div>
-            <div>
-              <dt className="text-3xl font-semibold text-foreground">3</dt>
-              <dd className="mt-1 text-sm text-muted-foreground">
-                Midwest states
+            <div className="rounded-lg border border-border/60 bg-card/60 p-4 backdrop-blur-xs">
+              <dt className="font-heading text-3xl font-bold text-foreground">3</dt>
+              <dd className="mt-1 text-xs font-medium text-muted-foreground">
+                Midwest States
               </dd>
             </div>
           </dl>

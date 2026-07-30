@@ -9,49 +9,49 @@ const EXPECT = [
   {
     num: "01",
     title: "Challenge Tracks",
-    body: "Multiple tracks designed by student orgs and sponsors — covering quantum algorithms, error correction, quantum machine learning, and hardware pulse programming.",
+    body: "Multiple tracks designed by student organizations and sponsors, covering quantum algorithms, error correction, quantum machine learning, and pulse programming.",
   },
   {
     num: "02",
     title: "Workshops & Crash Courses",
-    body: "Hands-on sessions for all levels. Write your first quantum circuit, or dive into variational algorithms and noise mitigation.",
+    body: "Hands-on sessions for all experience levels. Write your first quantum circuit or dive into variational algorithms and noise mitigation.",
   },
   {
     num: "03",
     title: "Mentorship",
-    body: "Guidance from experienced students, researchers, and industry mentors throughout the weekend — so every team can ship something real.",
+    body: "Guidance from experienced students, researchers, and industry mentors throughout the weekend to help every team build and present a functional project.",
   },
   {
     num: "04",
     title: "Demos & Judging",
-    body: "Present your project to judges from academia and industry. Prizes across technical depth, creativity, and real-world applicability.",
+    body: "Present your project to judges from academia and industry. Prizes awarded for technical depth, creativity, and real-world applicability.",
   },
 ];
 
 const FAQ = [
   {
     q: "When is MQH?",
-    a: "November 14–15, 2026 in Chicago. Pre-register to receive venue details and logistics updates.",
+    a: "November 14–15, 2026 in Chicago. Pre-register to receive venue details, schedule information, and logistics updates.",
   },
   {
     q: "Where will it be held?",
-    a: "UIC Campus — the University of Illinois Chicago, on Chicago's Near West Side. Its central location keeps the event accessible to participating Midwest universities within driving distance.",
+    a: "University of Illinois Chicago (UIC) campus on Chicago's Near West Side. Its central location provides easy access for participating universities across the Midwest.",
   },
   {
     q: "Who can participate?",
-    a: "Any undergraduate or graduate student at a Midwest university. No prior quantum experience is required — workshops cover the fundamentals.",
+    a: "Any undergraduate or graduate student at a Midwest university. No prior quantum experience is required; dedicated workshops cover key fundamentals.",
   },
   {
     q: "Is there a cost?",
-    a: "Yes — MQH is free for all students. Sponsorship funds subsidize meals, prizes, and event operations so cost is never a barrier to participating.",
+    a: "No, MQH is 100% free for all participating students. Sponsorship funding fully subsidizes meals, venue operations, and prize pools so cost is never a barrier.",
   },
   {
     q: "How are teams formed?",
-    a: "Register with a team, or be matched with other students at the event. Solo hackers are welcome too.",
+    a: "You can register with a team or join our team-matching sessions at the start of the event. Solo hackers are welcome as well.",
   },
   {
     q: "Want your university involved?",
-    a: "If your school has a quantum computing student org and you want to co-organize or participate, reach out — we're actively expanding.",
+    a: "If your school has a quantum computing student organization and you want to co-organize or bring a delegation, please reach out. We are actively expanding our university network.",
   },
 ];
 
@@ -70,9 +70,9 @@ export default function AboutPage() {
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
               MQH is organized entirely by student organizations across five
-              regional universities — and we&apos;re still growing. Our goal is
-              a long-term Midwest quantum builder community: by students, for
-              students.
+              leading Midwest universities, with a growing network of chapters.
+              Our mission is to build a vibrant, long-term quantum developer
+              community across the region: by students, for students.
             </p>
           </div>
         </section>

@@ -22,8 +22,8 @@ export default function Footer() {
             <span className="text-primary">⟩</span>
           </Link>
           <p className="mt-2 max-w-sm text-sm text-muted-foreground">
-            Midwest Quantum Hackathon — a student-led initiative. November
-            14–15, 2026, Chicago.
+            Midwest Quantum Hackathon | A student-led quantum computing initiative.
+            November 14–15, 2026 · Chicago, IL
           </p>
         </div>
 
