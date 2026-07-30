@@ -4,44 +4,31 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import ScrollReveal from "@/components/ScrollReveal";
 
-const PACKAGE = {
-  name: "Sponsor the Hackathon",
-  description:
-    "One simple package — no tiers, no minimum. We welcome sponsors of every size, and every contribution goes straight to the students.",
-  perks: [
-    "Your logo on the event t-shirt",
-    "Your logo displayed at the event and on our website",
-    "A table at the event to meet and talk with students",
-    "Access to a resume book of top Midwest quantum talent",
-  ],
-};
+const PERKS = [
+  "Logo on event t-shirts, signage, and the MQH website",
+  "Dedicated sponsor table to meet and recruit participating students",
+  "Full access to the resume book of Midwest quantum talent",
+  "Opportunity to present custom challenge problems or workshops",
+  "Representation at opening/closing ceremonies and the judge panel",
+];
 
 const BUDGET = [
   {
     allocation: "Catering & Meals",
     percentage: "55%",
-    impact:
-      "Keeping hackers fueled with breakfasts, lunches, dinners, coffee, and snacks.",
+    impact: "Breakfasts, lunches, dinners, and coffee throughout the weekend.",
   },
   {
-    allocation: "Student Prize Pools",
+    allocation: "Student Prizes",
     percentage: "25%",
-    impact: "Rewards and grants for top projects in each challenge track.",
+    impact: "Awards and grants for top teams in each challenge track.",
   },
   {
-    allocation: "Operations & Materials",
+    allocation: "Operations",
     percentage: "20%",
-    impact: "Workspace materials, name badges, student t-shirts, and printing.",
+    impact: "T-shirts, badges, workspace materials, and venue logistics.",
   },
 ];
 
@@ -50,89 +37,111 @@ export default function SponsorPage() {
     <>
       <Header />
       <main>
+        {/* Hero */}
         <section className="border-b border-border/60">
           <div className="mx-auto w-full max-w-6xl px-6 py-20 md:py-24">
-            <Badge variant="accent" className="mb-6">
-              Sponsors & partners
-            </Badge>
-            <h1 className="max-w-3xl font-heading text-4xl font-bold tracking-tight md:text-5xl">
-              Support regional quantum innovation
-            </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-              Partner with MQH to reach top CS and physics students and help
-              build a lasting regional quantum pipeline. We keep sponsorship
-              simple and accessible — no one gets priced out.
-            </p>
+            <div className="hero-animate max-w-3xl">
+              <div>
+                <Badge variant="accent" className="mb-6">
+                  Sponsors & partners
+                </Badge>
+              </div>
+              <h1 className="font-heading text-4xl font-bold tracking-tight md:text-5xl">
+                Support regional quantum innovation
+              </h1>
+              <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
+                Partner with MQH to connect with top CS, physics, and engineering
+                students and help build a lasting Midwest quantum talent pipeline.
+              </p>
+            </div>
           </div>
         </section>
 
+        {/* Package */}
         <section className="border-b border-border/60">
-          <div className="mx-auto w-full max-w-2xl px-6 py-20 md:py-24">
-            <Card className="border-primary ring-1 ring-primary">
-              <CardHeader>
-                <CardTitle className="text-2xl">{PACKAGE.name}</CardTitle>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  {PACKAGE.description}
-                </p>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <ul className="space-y-3">
-                  {PACKAGE.perks.map((perk) => (
-                    <li
-                      key={perk}
-                      className="flex items-start gap-3 text-sm text-foreground"
-                    >
-                      <Check className="mt-0.5 size-4 shrink-0 text-primary" />
-                      <span>{perk}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Button asChild size="lg" className="w-full">
-                  <a href="mailto:sponsors@mqh.org">Get in touch to sponsor</a>
-                </Button>
-              </CardContent>
-            </Card>
+          <div className="mx-auto w-full max-w-6xl px-6 py-20 md:py-24">
+            <ScrollReveal>
+              <div className="grid gap-14 lg:grid-cols-2 lg:gap-20">
+                {/* Left */}
+                <div data-reveal data-reveal-delay="1">
+                  <h2 className="font-heading text-3xl font-bold tracking-tight">
+                    Sponsorship package
+                  </h2>
+                  <p className="mt-4 text-muted-foreground leading-relaxed">
+                    One straightforward package — no tiers, no minimums. Every
+                    sponsor receives the same full suite of benefits, and 100% of
+                    funding goes directly to students.
+                  </p>
+
+                  {/* Hardware & Platform Callout */}
+                  <div className="mt-6 rounded-xl border border-border/80 bg-muted/40 p-5">
+                    <p className="font-heading text-xs font-semibold uppercase tracking-wider text-vivid">
+                      Hardware & Platform Partners
+                    </p>
+                    <p className="mt-1.5 text-xs text-muted-foreground leading-relaxed">
+                      Interested in providing QPU time or demonstrating your stack? Partners can offer processing credits to hackers, host dedicated tech talks/workshops, or sponsor custom challenge tracks around their platform.
+                    </p>
+                  </div>
+
+                  <Button asChild size="lg" className="mt-7">
+                    <a href="mailto:sponsors@mqh.org">
+                      Get in touch
+                    </a>
+                  </Button>
+                </div>
+
+                {/* Right — perks */}
+                <div data-reveal data-reveal-delay="2" className="rounded-xl border border-border bg-card p-7 card-lift">
+                  <p className="mb-5 font-heading text-[11px] font-semibold uppercase tracking-widest text-vivid">
+                    What&apos;s included
+                  </p>
+                  <ul className="space-y-4">
+                    {PERKS.map((perk) => (
+                      <li key={perk} className="flex items-start gap-3 text-sm">
+                        <Check className="mt-0.5 size-4 shrink-0 text-vivid" />
+                        <span className="leading-relaxed text-foreground">{perk}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </ScrollReveal>
           </div>
         </section>
 
+        {/* Budget */}
         <section>
           <div className="mx-auto w-full max-w-6xl px-6 py-20 md:py-24">
-            <div className="max-w-2xl">
+            <ScrollReveal>
               <h2 className="font-heading text-3xl font-bold tracking-tight">
                 Where funding goes
               </h2>
-              <p className="mt-4 text-muted-foreground">
-                Sponsorship funds are used directly to remove participation
-                barriers for students across the Midwest.
+              <p className="mt-4 max-w-xl text-muted-foreground leading-relaxed">
+                Every dollar goes directly toward removing participation barriers
+                for students across the Midwest.
               </p>
-            </div>
 
-            <div className="mt-10 overflow-hidden rounded-xl border border-border">
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Allocation</TableHead>
-                    <TableHead className="w-24">Percentage</TableHead>
-                    <TableHead>Impact</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {BUDGET.map((row) => (
-                    <TableRow key={row.allocation}>
-                      <TableCell className="font-medium text-foreground">
-                        {row.allocation}
-                      </TableCell>
-                      <TableCell className="text-primary">
-                        {row.percentage}
-                      </TableCell>
-                      <TableCell className="text-muted-foreground">
-                        {row.impact}
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </div>
+              <div className="mt-10 grid grid-cols-1 gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-3">
+                {BUDGET.map((row, i) => (
+                  <div
+                    key={row.allocation}
+                    data-reveal
+                    data-reveal-delay={String(i + 1) as "1"|"2"|"3"}
+                    className="bg-card p-7"
+                  >
+                    <p className="font-heading text-4xl font-bold text-vivid">
+                      {row.percentage}
+                    </p>
+                    <p className="mt-2 font-heading text-sm font-semibold text-foreground">
+                      {row.allocation}
+                    </p>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                      {row.impact}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </ScrollReveal>
           </div>
         </section>
       </main>
