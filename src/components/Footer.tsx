@@ -59,7 +59,16 @@ export default function Footer() {
             >
               Ryan Manley
             </a>{" "}
-            &amp; Humano.
+            &amp; 
+            {" "}
+            <a
+              href="https://www.linkedin.com/in/rohitmandapati/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-foreground/90 underline decoration-muted-foreground/40 underline-offset-2 hover:text-vivid"
+            >
+              Rohit Mandapati
+            </a>
           </p>
         </div>
       </div>
