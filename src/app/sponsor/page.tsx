@@ -84,7 +84,7 @@ export default function SponsorPage() {
                   </div>
 
                   <Button asChild size="lg" className="mt-7">
-                    <a href="mailto:sponsors@mqh.org">
+                    <a href="mailto:riveryc2@illinois.edu">
                       Get in touch
                     </a>
                   </Button>
