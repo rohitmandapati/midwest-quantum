@@ -9,21 +9,6 @@ import MascotBubble from "@/components/MascotBubble";
 export default function Hero() {
   return (
     <section className="relative overflow-hidden border-b border-border/60">
-      {/* Subtle dot grid — pure CSS, no image */}
-      <div
-        className="pointer-events-none absolute inset-0 -z-20"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle, oklch(0.80 0 0) 1px, transparent 1px)",
-          backgroundSize: "28px 28px",
-          maskImage:
-            "radial-gradient(ellipse 80% 60% at 50% 0%, black 30%, transparent 100%)",
-          WebkitMaskImage:
-            "radial-gradient(ellipse 80% 60% at 50% 0%, black 30%, transparent 100%)",
-          opacity: 0.35,
-        }}
-        aria-hidden="true"
-      />
       {/* Vivid blue glow — top right */}
       <div
         className="pointer-events-none absolute -top-40 right-[-5%] -z-10 h-[600px] w-[600px] rounded-full bg-vivid/[0.09] blur-[100px]"

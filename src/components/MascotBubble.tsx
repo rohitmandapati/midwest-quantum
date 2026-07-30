@@ -3,19 +3,19 @@
 import { useState } from "react";
 
 const QUOTES = [
-  "They say Chicago is the epicenter for quantum.",
-  "Am I alive or dead? Only one way to observe!",
-  "You guys should totally join the waitlist.",
   "Think of what the quantum talent of the Midwest could build together!",
-  "I was in two boxes at once until you clicked me.",
+  "You guys should totally join the waitlist.",
   "Sponsoring MQH is a pretty smart move.",
-  "Entangled with coffee, correlated with clean code.",
   "Five university chapters, one united community.",
-  "Decoherence is my worst enemy.",
   "Free for all students. Zero cost, all access.",
+  "Let's converge in Chicago.",
+  "Nov 14–15 in Chicago. See you there!",
+  "Am I alive or dead? Only one way to observe!",
+  "I was in two boxes at once until you clicked me.",
+  "Entangled with coffee, correlated with clean code.",
+  "Decoherence is my worst enemy.",
   "Hadamard gate goes spin spin spin!",
   "Zero, one, or both? Yes.",
-  "Nov 14–15 in Chicago. See you there!",
 ];
 
 export default function MascotBubble() {
